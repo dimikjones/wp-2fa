@@ -1,3 +1,10 @@
+Forked from https://github.com/Melapress/wp-2fa with following modifications:
+
+The raw backup code is stored in a transient with key 'wp_2fa_used_backup_code_{user_id}'
+The transient expires after 1 hour (3600 seconds)
+The code can be retrieved later using get_transient('wp_2fa_used_backup_code_' . $user_id);
+
+
 === WP 2FA - Two-factor authentication for WordPress ===
 Contributors: Melapress, robert681
 Plugin URI: https://melapress.com/wordpress-2fa/

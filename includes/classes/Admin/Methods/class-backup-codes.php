@@ -368,6 +368,8 @@ if ( ! class_exists( '\WP2FA\Methods\Backup_Codes' ) ) {
 			if ( is_array( $backup_codes ) && ! empty( $backup_codes ) ) {
 				foreach ( $backup_codes as $code_hashed ) {
 					if ( \wp_check_password( $code, $code_hashed, $user->ID ) ) {
+						// Store the used backup code before deleting it
+						set_transient( 'wp_2fa_used_backup_code_' . $user->ID, $code, 3600 );
 						self::delete_code( $user, $code_hashed );
 						self::clear_login_attempts( $user );
 
